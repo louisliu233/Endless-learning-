@@ -1,15 +1,13 @@
 import React,{Component,Fragment} from 'react'
 import Test from './test'
 import Button from './Button'
+import store from './store'
 import './style.css'
 
 class App extends Component{
     constructor(props){
         super(props)
-        this.state = {
-            inputValue: 'louis',
-            list: ['虚拟dom','diff算法']
-        }
+        this.state = store.getState()
     }
 
     render(){

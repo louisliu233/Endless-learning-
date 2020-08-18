@@ -1,0 +1,5 @@
+export const CHANG_INPUT = 'changInput'
+export const ADDLIST = 'addList'
+export const DELLIST = 'delList'
+export const GETLIST = 'getList'
+export const GET_MY_LIST = 'getMyList'

@@ -1,7 +1,10 @@
-const defaultState ={
+
+const  defaultState = {
     inputValue: 'louisvillain',
-    list: ['louis','zimin','yufan']
+    list: ['viajsdk','louisje','yufanm','ziming']
 }
+
+
 export default (state = defaultState,action) => {
     return state
 }

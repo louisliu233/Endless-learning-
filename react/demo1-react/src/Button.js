@@ -5,7 +5,7 @@ class Button extends Component {
         super(props);
         this.state = { isToggleOn: true }
         this.handleClick = this.handleClick.bind(this)
-        this.ListItem = this.ListItem.bind(this)
+        // this.ListItem = this.ListItem.bind(this)
     }
 
     handleClick(){
