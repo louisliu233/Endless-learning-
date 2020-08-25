@@ -7,25 +7,21 @@
 </head>
 <body>
     <script>
-        function App(arr){
-            var len = arr.length
+       const selectionSort = (arr) => {
+            var len = arr,length
             for(i=0;i<len-1;i++){
-                var item = i
+                var minIndex = i
                 for(j=i+1;j<len;j++){
-                    if(arr[j]<arr[item]){
-                        item = j
+                    if(arr[j]<arr[minIndex]){   // 寻找最小的数
+                        minIndex = j            // 将最小数的索引保存
                     }
                 }
                 var temp = arr[i]
-                    arr[i] = arr[item]
-                    arr[item] = temp
+                arr[i] = arr[minIndex]
+                arr[minIndex]=temp
             }
             return arr
-        }
-        
-        const array = [25,36,41,52,32,12,9,15,48]
-        const app = App(array)
-        console.log(app);
+       }
     </script>
 </body>
 </html>

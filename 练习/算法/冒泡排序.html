@@ -7,23 +7,19 @@
 </head>
 <body>
     <script>
-        function App(arr){
+       const bubbleSort = (arr) => {
             var len = arr.length
             for(i=0;i<len-1;i++){
                 for(j=0;j<len-1-i;j++){
                     if(arr[j]>arr[j+1]){
-                        var item = arr[j]
-                        arr[j] = arr[j+1]
-                        arr[j+1] = item
+                        var temp = arr[j+1]
+                        arr[j+1] = arr[i]
+                        arr[i] = temp
                     }
                 }
             }
             return arr
-        }
-        const array = [12,45,78,52,1,5,24,56,47]
-        const app = App(array)
-        console.log(app);
-
+       }
     </script>
 </body>
 </html>
