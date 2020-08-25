@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择排序</title>
+</head>
+<body>
+    <script>
+        function App(arr){
+            var len = arr.length
+            for(i=0;i<len-1;i++){
+                var item = i
+                for(j=i+1;j<len;j++){
+                    if(arr[j]<arr[item]){
+                        item = j
+                    }
+                }
+                var temp = arr[i]
+                    arr[i] = arr[item]
+                    arr[item] = temp
+            }
+            return arr
+        }
+        
+        const array = [25,36,41,52,32,12,9,15,48]
+        const app = App(array)
+        console.log(app);
+    </script>
+</body>
+</html>

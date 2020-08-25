@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function foo(array){
+            var result = 0
+            var max = Math.max(...array)
+            var min = Math.min(...array)
+            result = max - min
+            return result
+        }
+        const foo1 = (array) => {
+            var result = 0
+            var arr = array.sort()
+            result = arr[0] - arr[array.length-1]
+            console.log(arr);
+            return result
+        }
+        const array = [12,23,6,8,4]
+        foo1(array)//sort排序会比较第一位的数字
+        console.log(foo(array));
+    </script>
+</body>
+</html>
