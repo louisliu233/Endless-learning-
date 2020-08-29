@@ -18,9 +18,23 @@
 
     <script>
         const btn = document.querySelector('button');
+        const result = document.getElementsByClassName('result')
         btn.onclick = () => {
+
             const xhr = new XMLHttpRequest();
-            xhr.open('GET','http://127.0.0.1:3000/server')
+            xhr.open('GET','http://127.0.0.1:3000/server');
+            xhr.send();
+            xhr.onreadystatechange = () => {
+
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        result.innerHTML = xhr.response
+                    }else{
+
+                    }
+                }
+                
+            }
         }
     </script>
 </body>

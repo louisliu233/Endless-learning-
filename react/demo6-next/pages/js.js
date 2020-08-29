@@ -20,7 +20,7 @@ export default function FirstPost(){
             </h3>
             <button onClick={goHome}>Back to home</button><br/>
             <h3>
-            <Link href={{pathname:'/person'}}>
+            <Link href={{pathname:'/person', query:{name:'louis'}}}>
                     <a>Back to Person</a>
             </Link>
             </h3>
