@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style >
+       .main{
+        display: flex;
+        
+        min-height: 300px;
+    }
+    .left{
+      order: -1;
+        background: red;
+        width: 200px;
+        
+    }    
+    .right{
+        background: blue;
+        width: 200px;
+        
+     
+    }
+    .middle{
+        background: green;
+       flex: 1;
+    }
+    </style>
+        
+</head>
+<body>
+       <!-- 1.圣杯布局 -->
+    <!-- <div class="main">
+        <div class="middle">中间的</div>
+        <div class="left">左边的</div>
+        <div class="right">右边的</div>
+    </div> -->
+        <!-- 2.双飞燕布局 -->
+        <div class="main">
+          <div class="middle">
+            <div class="inner">中间的</div>
+          </div>
+          <div class="left">左边的</div>
+          <div class="right">右边的</div>
+        </div>
+</body>
+</html>
