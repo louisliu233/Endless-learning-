@@ -14,39 +14,20 @@
 <body>
     <script>
       
-      function throttle(fn, delay){
-          var lastTime = 0
-          return function(){
-            var nowTime = Date.now()
-            if(nowTime-lastTime>delay){
-                fn.call(this)
-                lastTime = nowTime
-            }
-          }
-      }
-      
-      function throttle(fn, delay){
-          let isRun = true
-          return function(){
-              if(!isRun)return
-              isRun = false
-              setTimeout(() => {
-                fn.call(this)
-                isRun = true
-              },delay)
-          }
-      }
+      console.log('----------------- start -----------------');
+setTimeout(() => {
+  console.log('setTimeout');
+}, 0)
+new Promise((resolve, reject) =>{
+  for (var i = 0; i < 5; i++) {
+    console.log(i);
+  }
+  resolve();  // 修改promise实例对象的状态为成功的状态
+}).then(() => {
+  console.log('promise实例成功回调执行');
+})
+console.log('----------------- end -----------------');
 
-
-      function debounce(fn, delay){
-          let timer = null
-          return function(){
-              clearTimeout(timer)
-              timer = setTimeout(() => {
-                fn.call(this)
-              },delay)
-          }
-      }
     </script>
 </body>
 </html>

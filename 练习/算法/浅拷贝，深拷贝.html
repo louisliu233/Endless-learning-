@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //浅拷贝基本数据类型拷贝前后不受影响，引用数据类型拷贝前后共享一块内存，相互影响
+        //1.对象浅拷贝
+        let obj1 = {person: {name: 'louis',age: '18'},sports:'basketball'}
+        let obj2 = Object.assign({},obj1) //let obj2 = {...obj1} 
+        obj2.preson.name = 'villain'
+        console.log(obj1);//{ person: { name: 'villain', age: 41 }, sports: 'basketball' }
+        
+        //2.数组浅拷贝
+        let arr = [1, 3, {username: 'kobe'}];
+        let arr2 = arr.concat();   //let arr2 = arr.slice() 
+        arr2[2].username = 'wade';
+        console.log(arr); //[ 1, 3, { username: 'wade' } ]
+
+        //3.浅拷贝的方法 封装函数
+        function shallowClone(source){
+             let target = {}
+             for(i in source){
+                 if(source.hasOwnProperty(i)){
+                     target[i] = source[i]
+                 }
+             }
+             return target
+        }
+        //4.使用lodash函数库的_.clone方法
+        var _ = require('lodash');
+        var obj1 = {
+            a: 1,
+            b: { f: { g: 1 } },
+            c: [1, 2, 3]
+        };
+        var obj2 = _.clone(obj1);
+        console.log(obj1.b.f === obj2.b.f);// true
+
+
+
+        //深拷贝
+        //1.使用lodash函数库的_.cloneDeep方法
+        var _ = require('lodash');
+        var obj1 = {
+            a: 1,
+            b: { f: { g: 1 } },
+            c: [1, 2, 3]
+        };
+        var obj2 = _.cloneDeep(obj1);
+        console.log(obj1.b.f === obj2.b.f);// false
+
+        //2.遍历递归 封装函数
+        function deepClone(obj) {
+        let objClone = Array.isArray(obj) ? [] : {};
+        if (obj && typeof obj === 'object') {
+            for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                if (obj[key] && typeof obj[key] === 'object') {
+                objClone[key] = deepClone(obj[key])
+                } else {
+                objClone[key] = obj[key]
+                }
+            }
+            }
+        }
+        return objClone;
+        }
+        let a = [20,8,6,19],
+        b = deepClone(a);
+        a[1] = 2;
+        console.log(a, b)
+
+
+        // 3.通过js的内置对象JSON来进行数组对象的深拷贝 封装函数
+        //这种方法虽然可以实现数组或对象深拷贝,但不能处理函数和正则得到的正则就不再是正则 变为空对象
+        //得到的函数就不再是函数（变为null）
+            function deepClone(obj) {
+            var _obj = JSON.stringify(obj),
+                objClone = JSON.parse(_obj);
+            return objClone;
+            }
+
+            let arr = [1, 3, { username: ' kobe'}];
+            let arr4 = JSON.parse(JSON.stringify(arr));
+
+    </script>
+</body>
+</html>
