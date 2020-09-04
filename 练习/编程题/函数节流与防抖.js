@@ -30,6 +30,6 @@ function debounce(fn, delay){
         clearTimeout(timer)
         timer = setTimeout(() => {
             fn.call(this)
-        },delay)
+        },delay) 
     }
 }
