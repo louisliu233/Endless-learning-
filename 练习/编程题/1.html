@@ -12,24 +12,21 @@
     </style>
 </head>
 <body>
-    <script>
+    
       
-      function deepClone(obj){
-        let objclone = Array.isArray(obj) ? [] : {}
-        if(obj&&typeof obj === 'object'){
-          for(i in obj){
-            if(obj.hasOwnProperty(i)){
-              if(objclone[i]&&typeof objclone[i] === 'object'){
-                objclone[i] = deepClone(objclone[i])
-              }else{
-                objclone[i] = obj[i]
-              }
-            }
-          }
-        }
-        return objclone
-      }
+      <script>
+    var val = 1;
+var obj = {
+  val : 2,
+  foo() {
+    console.log(this.val)
+  }
+}
+var bar = obj.foo
+obj.foo() 
+bar()
+</script>
 
-    </script>
+    
 </body>
 </html>
