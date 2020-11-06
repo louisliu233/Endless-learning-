@@ -23,6 +23,7 @@ const index = ({ users, dispatch, userListLoading }: any) => {
     {
       title: 'Create Time',
       dataIndex: 'create_time',
+      valueType: 'dateTime',
       key: 'create_time',
     },
 
@@ -63,6 +64,26 @@ const index = ({ users, dispatch, userListLoading }: any) => {
   const addUser = () => {
     setModalVisible(true);
     setRecord(undefined);
+  }
+
+  const paginationHandler = (page: number, pageSize?: number) => {
+    dispatch({
+      type: 'users/getRemote',
+      payload: {
+        page,
+        per_page: pageSize ? pageSize : users.meta.per_page,
+      },
+    });
+  }
+
+  const pageSizeHandler = (current: number, size: number) => {
+    dispatch({
+      type: 'users/getRemote',
+      payload: {
+        page: current,
+        per_page: size,
+      },
+    });
   }
 
 
@@ -106,9 +127,14 @@ const index = ({ users, dispatch, userListLoading }: any) => {
       pagination={false}/>
       <Pagination
       className='pagiNation'
-      total={85}
+      total={users.meta.total}
+      onChange={paginationHandler}
+      onShowSizeChange={pageSizeHandler}
+      current={users.meta.page}
+      pageSize={users.meta.per_page}
       showSizeChanger
       showQuickJumper
+      pageSizeOptions={['5', '10', '20', '50']}
       showTotal={total => `Total ${total} items`}
     />
       <UserModal
@@ -122,7 +148,7 @@ const index = ({ users, dispatch, userListLoading }: any) => {
   );
 };
 
-const mapStateToProps = ({users, loading}: any) => {
+const mapStateToProps = ({users, loading}: {users: any, loading: any}) => {
   return {
     users,
     userListLoading: loading.models.users

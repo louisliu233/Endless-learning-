@@ -53,8 +53,8 @@ const UseModal: UserModalType = {
     }
   },
   effects: {
-    *getRemote(action, {put, call}) {
-      const data = yield call(getRemoteList);
+    *getRemote({payload: {page, per_page}}, {put, call}) {
+      const data = yield call(getRemoteList, {page, per_page});
       if (data) {
         yield put({
         type: 'getList',
@@ -62,34 +62,55 @@ const UseModal: UserModalType = {
       })
     }
     },
-    *edit({payload:{values, id}}, {put, call}) {
+    *edit({payload: {values, id}}, {put, call, select}) {
       const data = yield call(editRecord, {values, id});
       if (data) {
         message.success('Edit successfully');
+        const { page, per_page } = yield select(
+          (state: any) => state.users.meta,
+        );
         yield put({
           type: 'getRemote',
+          payload: {
+            page,
+            per_page
+          }
         })
       }else {
         message.error('Edit failed');
       }
     },
-    *delete({payload:{id}}, {put, call}) {
+    *delete({payload: {id}}, {put, call, select}) {
       const data = yield call(deleteUser, id);
       if (data) {
         message.success('Delete successfully');
+        const { page, per_page } = yield select(
+          (state: any) => state.users.meta,
+        )
         yield put({
           type: 'getRemote',
+          payload: {
+            page,
+            per_page
+          }
         })
       }else {
         message.error('Delete failed');
       }
     },
-    *add({payload:{values}}, {put, call}) {
+    *add({payload:{values}}, {put, call, select}) {
       const data = yield call(addUser, values);
       if (data) {
         message.success('Add successfully');
+        const { page, per_page } = yield select(
+          (state: any) => state.users.meta,
+        )
         yield put({
           type: 'getRemote',
+          payload: {
+            page,
+            per_page
+          }
         })
       }else {
         message.error('Add failed');
